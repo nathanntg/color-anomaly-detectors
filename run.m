@@ -10,7 +10,6 @@ color_spaces{end + 1} = @im_rgb2upvpl;
 color_spaces{end + 1} = @im_rgb2uvl;
 color_spaces{end + 1} = @im_rgb2xyy;
 color_spaces{end + 1} = @im_rgb2xyz;
-color_spaces{end + 1} = @im_rgb2lab;
 color_spaces{end + 1} = @(img) select_channel(im_rgb2lab(img), 2:3);
 color_spaces{end + 1} = @(img) select_channel(im_rgb2upvpl(img), 1:2);
 color_spaces{end + 1} = @(img) select_channel(im_rgb2uvl(img), 1:2);
@@ -44,16 +43,38 @@ for i = 1:length(scene_files)
         fprintf('Color %d...\n', j);
         
         % run four algorithms
-        img_dwest = dwest(img);
-        save(sprintf('output/%s-%d-dwest.mat', scene_file, j), 'img_dwest');
+        fname = sprintf('output/%s-%d-dwest.mat', scene_file, j);
+        if exist(fname, 'file')
+            load(fname);
+        else
+            img_dwest = dwest(img);
+            save(fname, 'img_dwest');
+        end
         
-        img_nswtd = nswtd(img);
-        save(sprintf('output/%s-%d-nswtd.mat', scene_file, j), 'img_nswtd');
+        fname = sprintf('output/%s-%d-nswtd.mat', scene_file, j);
+        if exist(fname, 'file')
+            load(fname);
+        else
+            img_nswtd = nswtd(img);
+            save(fname, 'img_nswtd');
+        end
         
-        img_mwnswtd = mwnswtd(img);
-        save(sprintf('output/%s-%d-mwnswtd.mat', scene_file, j), 'img_mwnswtd');
+        fname = sprintf('output/%s-%d-mwnswtd.mat', scene_file, j);
+        if exist(fname, 'file')
+            load(fname);
+        else
+            img_mwnswtd = mwnswtd(img);
+            save(fname, 'img_mwnswtd');
+        end
         
-        img_pcag = pcag(img);
-        save(sprintf('output/%s-%d-pcag.mat', scene_file, j), 'img_pcag');
+        fname = sprintf('output/%s-%d-pcag.mat', scene_file, j);
+        if exist(fname, 'file')
+            load(fname);
+        else
+            img_pcag = mwnswtd(img);
+            save(fname, 'img_pcag');
+        end
     end 
 end
+
+delete(gcp);
