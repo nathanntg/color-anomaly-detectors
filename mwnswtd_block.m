@@ -23,11 +23,16 @@ for w_size = (iw_size + 2):2:(block_size - 2)
 	
 	% redraw mask for outerwindow
 	mask = sq_mask(block_size, channels, w_size + 2, w_size);
-	ow_mean = mean(reshape(block_struct.data(mask), [], channels));
+	ow_mean = mean(reshape(block_struct.data(mask), [], channels), 1);
 	
     % use OSP based on outer window to project both inner and middle window
     p_outer = osp(ow_mean);
-    d = opd(iw_mean * p_outer, mw_mean * p_outer);
+    d = (iw_mean * p_outer * iw_mean') + (mw_mean * p_outer * mw_mean');
+    if 0 <= d
+        d = sqrt(d);
+    else
+        d = nan;
+    end
     
     % eigen vectors associated with positive value times mean
     px = max(d, px);
