@@ -4,14 +4,11 @@ function px = dwest_block(block_struct)
 % square odd dimension
 block_size = size(block_struct.data, 1);
 channels = size(block_struct.data, 3);
-mid_point = (block_size - 1) / 2;
-mask = false([block_size block_size channels]);
 
-px = 0;
+px = nan;
 for iw_size = 1:2:(block_size - 4)
     % update mask
-    d = (iw_size - 1) / 2;
-    mask(mid_point - d:mid_point + d, mid_point - d:mid_point + d, :) = true([iw_size iw_size channels]);
+    mask = sq_mask(block_size, channels, iw_size);
     
     % extract windows
     iw = reshape(block_struct.data(mask), [], channels);

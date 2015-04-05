@@ -8,7 +8,7 @@ channels = size(block_struct.data, 3);
 mid_point = (block_size - 1) / 2;
 mask = false([block_size block_size channels]);
 
-px = 0;
+px = nan;
 for iw_size = 1:2:(block_size - 4)
     % update mask
     d = (iw_size - 1) / 2;

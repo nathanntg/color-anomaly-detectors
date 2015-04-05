@@ -4,7 +4,12 @@ function img_ss = select_channel(img, channels)
 img_ss = img(:, :, channels)
 end
 
+function img_tc = transform_channel(img, channel, cb)
+img_tc = img;
+img_tc(:, :, channel) = cb(img_tc(:, :, channel);
+end
 
 rgb2ycbcr
-@(img) rgb2ycbcr;
+@(img) select_channel(rgb2ycbcr(img), 2:3);
+@(img) transform_channel(rgb2ycbcr(img), 1, log)
 im_rgb2lab

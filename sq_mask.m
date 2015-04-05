@@ -1,7 +1,7 @@
 function mask = sq_mask(sz, channels, m_size, h_size)
 %SQ_MASK Generate a square mask.
 % sz must be an odd number represnting the mask size
-mid_point = (sz - 1) / 2;
+mid_point = 1 + (sz - 1) / 2;
 if m_size == sz
     mask = true([sz sz channels]);
 else
