@@ -1,9 +1,7 @@
-function [tpr, fpr, th, auc] = roc_anomally(im_target, im_out, mn, mx)
+function [tpr, fpr, th, auc] = roc_anomally(im_target, im_out)
 %ROC_ANOMALLY Plot receiver operating characteristic and return values.
 %   Takes a target image and the output of an anomally detector.
 %   Shows a plot of the ROC curve.
-%   The anomally detector response is automatically normalized, unless mn 
-%   and max are specified.
 
 % remove color component
 if 3 == ndims(im_target)
@@ -14,18 +12,34 @@ end
 v_target = im_target(:);
 v_out = im_out(:);
 
-if nargin < 3
-    mn = min(v_out);
-    mx = max(v_out);
-end
-if abs(mn - 0) > 1e-16  || abs(mx - 1) > 1e-16
-    v_out = (v_out - mn) / (mx - mn);
+% sort target accordingly
+[th, ind] = sort(v_out, 'descend');
+s_target = v_target(ind);
+
+num = numel(s_target);
+tp = 0; fp = 0;
+fn = sum(s_target); tn = num - fn;
+fpr = zeros(1 + num, 1); tpr = zeros(1 + num, 1);
+for v = 1:num
+	if s_target(v)
+		tp = tp + 1;
+		fn = fn - 1;
+	else
+		fp = fp + 1;
+		tn = tn - 1;
+	end
+	tpr(1 + v) = tp / (tp + fn);
+	fpr(1 + v) = fp / (tn + fp);
 end
 
-plotroc(v_target', v_out');
-[tpr, fpr, th] = roc(v_target', v_out');
+% make plot
+figure;
+plot(fpr, tpr, 'b', 'LineWidth', 2.);
 auc = trapz(fpr, tpr);
-fprintf('AUC: %.5f\n', auc);
+legend(sprintf('ROC (AUC: %.3f)', auc), 'Location', 'SouthEast');
+hold on; plot([0; 1], [0; 1], '-', 'Color', [.8 .8 .8]); hold off;
+xlim([0 1]); ylim([0 1]);
+xlabel('FPR'); ylabel('TPR');
 
 end
 
