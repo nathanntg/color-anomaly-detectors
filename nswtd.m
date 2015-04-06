@@ -40,7 +40,7 @@ for i = 1:width
 			ow_mean = mean(win(masks_inv{k}, :), 1);
             
             % OPD
-            d = opd(iw_mean, ow_mean);
+            d = max(d, opd(iw_mean, ow_mean));
 		end
 		
 		im_result(j, i) = d;
