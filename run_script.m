@@ -41,6 +41,7 @@ for j = 1:length(color_spaces)
     fprintf('Color %d...\n', j);
 
     % run four algorithms
+    % DWEST
     fname = sprintf('output/%s-%d-dwest.mat', scene_file, j);
     if exist(fname, 'file')
         load(fname);
@@ -49,6 +50,7 @@ for j = 1:length(color_spaces)
         save(fname, 'img_dwest');
     end
 
+    % NSWTD
     fname = sprintf('output/%s-%d-nswtd.mat', scene_file, j);
     if exist(fname, 'file')
         load(fname);
@@ -57,6 +59,7 @@ for j = 1:length(color_spaces)
         save(fname, 'img_nswtd');
     end
 
+    % MW-NSWTD
     fname = sprintf('output/%s-%d-mwnswtd.mat', scene_file, j);
     if exist(fname, 'file')
         load(fname);
@@ -65,6 +68,7 @@ for j = 1:length(color_spaces)
         save(fname, 'img_mwnswtd');
     end
 
+    % PCAG
     fname = sprintf('output/%s-%d-pcag.mat', scene_file, j);
     if exist(fname, 'file')
         load(fname);

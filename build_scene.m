@@ -48,7 +48,7 @@ for j = 1:num_anomalies
     end
 
     % position
-    pos = rand(1, 3) .* (size(scene) - size(anom));
+    pos = 1 + rand(1, 3) .* (size(scene) - size(anom));
     pos = round(pos(1:2));
 
     % average luminance
