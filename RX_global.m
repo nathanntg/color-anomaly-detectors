@@ -13,13 +13,15 @@ K=cov(CC);
 % Create mean color column vector
 mu=mean(CC)';
 
+% Preallocate
+img_out = zeros(img_size1, img_size2);
+
 for i=1:img_size1
     for j=1:img_size2
         % Locate center pixel and convert to column vector
-        r=reshape(Data(i,j,:),channels,[]);
+        r = squeeze(Data(i, j, :));
 
         % Run RX detector on center pixel
-        d(1+i,1+j)=(r-mu)'*K^-1*(r-mu);
+        img_out(i,j)=(r-mu)'/K*(r-mu);
     end
 end
-img_out=d;

@@ -13,7 +13,7 @@ color_spaces{end + 1} = @(img) select_channel(im_rgb2lab(img), 2:3);
 color_spaces{end + 1} = @(img) select_channel(im_rgb2upvpl(img), 1:2);
 color_spaces{end + 1} = @(img) select_channel(im_rgb2uvl(img), 1:2);
 color_spaces{end + 1} = @(img) select_channel(im_rgb2xyz(img), [1 3]);
-color_spaces{end + 1} = @(img) select_channel(im_rgb2lab(img), [1 3]);
+color_spaces{end + 1} = @(img) select_channel(im_rgb2xyy(img), [1 3]);
 color_spaces{end + 1} = @(img) transform_channel(im_rgb2lab(img), 1, @log);
 
 % load file
