@@ -41,6 +41,15 @@ for j = 1:length(color_spaces)
     fprintf('Color %d...\n', j);
 
     % run four algorithms
+    % RX GLOBAL
+    fname = sprintf('output/%s-%d-rx.mat', scene_file, j);
+    if exist(fname, 'file')
+        load(fname);
+    else
+        img_rx = RX_global(img);
+        save(fname, 'img_rx');
+    end
+    
     % DWEST
     fname = sprintf('output/%s-%d-dwest.mat', scene_file, j);
     if exist(fname, 'file')
