@@ -72,7 +72,7 @@ for j = 1:length(color_spaces)
     % PCAG
     fname = sprintf('output/%s-%d-pcag.mat', scene_file, j);
     if ~exist(fname, 'file')
-        img_pcag = mwnswtd(img);
+        img_pcag = pcag(img);
         save(fname, 'img_pcag');
     end
 end 

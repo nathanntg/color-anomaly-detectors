@@ -5,7 +5,7 @@ algos_nice = {'Global RX', 'DWEST', 'NSWTD', 'MW-NSWTD', 'PCAG'};
 % scenes to compare
 scene_files = dir('scenes/*.jpg');
 scene_files = {scene_files.name};
-scene_files = {'beach.jpg', 'beach2.jpg', 'desert.jpg', 'desert2.jpg'};
+% scene_files = {'beach.jpg', 'desert.jpg', 'island.jpg'};
 
 % color spaces to compare
 color_spaces = {'RGB', 'L*a*b', 'u''v''L', 'uvL', 'xyY', 'XYZ', '*a*b', 'u''v''', 'uv', 'xy', 'XZ', 'log(L)*a*b'};
@@ -59,3 +59,13 @@ for i = 1:length(color_spaces)
 		tbl(i, j) = auc;
     end
 end
+
+% bar plot
+b = bar(tbl);
+ylim([0.85 1.0]);
+ylabel('AUC');
+xlabel('Color space');
+legend(b, algos, 'Location', 'EastOutside');
+set(gca, 'XTickLabel', color_spaces);
+title('Comparative Performance');
+print(gcf, 'bar.png', '-dpng', '-r300');

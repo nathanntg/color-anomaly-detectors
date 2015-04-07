@@ -1,2 +1,6 @@
 *.tiff
 *.mat
+roc
+scenes
+anomalies
+*.jpg

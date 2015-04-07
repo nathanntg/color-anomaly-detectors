@@ -9,5 +9,3 @@ parpool('local', 3);
 parfor i = 1:length(scene_files)
     run_script(scene_files{i});
 end
-
-delete(gcp);
