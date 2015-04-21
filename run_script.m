@@ -15,6 +15,9 @@ color_spaces{end + 1} = @(img) select_channel(im_rgb2uvl(img), 1:2);
 color_spaces{end + 1} = @(img) select_channel(im_rgb2xyz(img), [1 3]);
 color_spaces{end + 1} = @(img) select_channel(im_rgb2xyy(img), [1 3]);
 color_spaces{end + 1} = @(img) transform_channel(im_rgb2lab(img), 1, @(x) log(1+x));
+color_spaces{end + 1} = @rgb2ycbcr;
+color_spaces{end + 1} = @(img) select_channel(rgb2ycbcr(img), 2:3);
+
 
 % load file
 fname = sprintf('output/%s.mat', scene_file);
@@ -22,7 +25,11 @@ if exist(fname, 'file')
     load(fname);
 else
     % build scene and target
-    [scene, target] = build_scene(scene_file);
+    if strcmp(scene_file(1:7), 'control')
+        [scene, target] = build_scene(scene_file, 0);
+    else
+        [scene, target] = build_scene(scene_file);
+    end
 
     % save
     save(['output/' scene_file '.mat'], 'scene', 'target');
@@ -46,6 +53,13 @@ for j = 1:length(color_spaces)
     if ~exist(fname, 'file')
         img_rx = RX_global(img);
         save(fname, 'img_rx');
+    end
+    
+    % RX LOCAL
+    fname = sprintf('output/%s-%d-rxl.mat', scene_file, j);
+    if ~exist(fname, 'file')
+        img_rxl = rxl(img);
+        save(fname, 'img_rxl');
     end
     
     % DWEST
@@ -74,6 +88,13 @@ for j = 1:length(color_spaces)
     if ~exist(fname, 'file')
         img_pcag = pcag(img);
         save(fname, 'img_pcag');
+    end
+
+    % KNNA
+    fname = sprintf('output/%s-%d-knna.mat', scene_file, j);
+    if ~exist(fname, 'file')
+        img_knna = knna(img);
+        save(fname, 'img_knna');
     end
 end 
 

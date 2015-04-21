@@ -1,10 +1,13 @@
-function [scene, target] = build_scene(file, num_anomalies)
+function [scene, target] = build_scene(file, num_anomalies, blended)
 %BUILD_SCENE Reads image file and adds anomalies to it.
 %   Returns image and target map showing anomalies. Anomalies are luminance
 %   adjusted to match the surroundings. Defaults to 3 anomalies.
 
 if nargin < 2
     num_anomalies = 3;
+    blended = true;
+elseif nargin < 3
+	blended = true;
 end
 
 % settings
@@ -71,7 +74,13 @@ for j = 1:num_anomalies
     % local scene
     scene_local = scene(pos(1):pos(1) + size(anom, 1) - 1, pos(2):pos(2) + size(anom, 2) - 1, :);
     % replace channels
-    scene_local(mask) = anom(mask);
+    if blended
+        w = repmat(double(anom_mask), 1, 1, 3) / 255;
+        w(~mask) = 0;
+        scene_local = (1 - w) .* scene_local + w .* anom;
+    else
+        scene_local(mask) = anom(mask);
+    end
     scene(pos(1):pos(1) + size(anom, 1) - 1, pos(2):pos(2) + size(anom, 2) - 1, :) = scene_local;
     
     % update target
