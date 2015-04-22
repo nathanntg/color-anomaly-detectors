@@ -90,6 +90,13 @@ for j = 1:length(color_spaces)
         save(fname, 'img_pcag');
     end
 
+    % MW-PCAG
+    fname = sprintf('output/%s-%d-mwpcag.mat', scene_file, j);
+    if ~exist(fname, 'file')
+        img_mwpcag = mwpcag(img);
+        save(fname, 'img_mwpcag');
+    end
+
     % KNNA
     fname = sprintf('output/%s-%d-knna.mat', scene_file, j);
     if ~exist(fname, 'file')
