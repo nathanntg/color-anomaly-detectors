@@ -1,6 +1,6 @@
 % algorithms to compare
-algos = {'rx', 'dwest', 'nswtd', 'mwnswtd', 'pcag'};
-algos_nice = {'Global RX', 'DWEST', 'NSWTD', 'MW-NSWTD', 'PCAG'};
+algos = {'rx', 'rxl', 'dwest', 'nswtd', 'mwnswtd', 'pcag', 'mwpcag', 'knna'};
+algos_nice = {'Global RX', 'Local RX', 'DWEST', 'NSWTD', 'MW-NSWTD', 'PCAG', 'MW-PCAG', 'KNN'};
 
 % scenes to compare
 scene_files = dir('scenes/*.jpg');
@@ -8,7 +8,7 @@ scene_files = {scene_files.name};
 % scene_files = {'beach.jpg', 'desert.jpg', 'island.jpg'};
 
 % color spaces to compare
-color_spaces = {'RGB', 'L*a*b', 'u''v''L', 'uvL', 'xyY', 'XYZ', '*a*b', 'u''v''', 'uv', 'xy', 'XZ', 'log(L)*a*b'};
+color_spaces = {'RGB', 'L*a*b', 'u''v''L', 'uvL', 'xyY', 'XYZ', '*a*b', 'u''v''', 'uv', 'xy', 'XZ', 'log(L)*a*b', 'YCbCr', 'CbCr'};
 
 % make comprehensive target
 target = [];
@@ -62,7 +62,7 @@ end
 
 % bar plot
 b = bar(tbl);
-ylim([0.85 1.0]);
+ylim([0.65 1.0]);
 ylabel('AUC');
 xlabel('Color space');
 legend(b, algos, 'Location', 'EastOutside');
