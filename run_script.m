@@ -97,6 +97,13 @@ for j = 1:length(color_spaces)
         save(fname, 'img_mwpcag');
     end
 
+    % PCAD
+    fname = sprintf('output/%s-%d-pcad.mat', scene_file, j);
+    if ~exist(fname, 'file')
+        img_pcad = pcad(img);
+        save(fname, 'img_pcad');
+    end
+
     % KNNA
     fname = sprintf('output/%s-%d-knna.mat', scene_file, j);
     if ~exist(fname, 'file')
