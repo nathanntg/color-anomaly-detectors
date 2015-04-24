@@ -26,15 +26,15 @@ for c = 1:p_nm
     % largest
     if fm > bm
         fm_i = min_size - 1 + fm_i;
-        ret(s_i(1:fm_i)) = ret(s_i(1:fm_i)) + (fm * p_la(c));
+        ret(s_i(1:fm_i)) = ret(s_i(1:fm_i)) + fm;
     else
         bm_i = numel(s) - max_size - 1 + bm_i + diff_num;
-        ret(s_i(bm_i:end)) = ret(s_i(bm_i:end)) + (bm * p_la(c));
+        ret(s_i(bm_i:end)) = ret(s_i(bm_i:end)) + bm;
     end
 end
 
 % normalize
 % restore shape
-px = reshape(ret / sum(p_la), block_size(1), block_size(2));
+px = reshape(ret, block_size(1), block_size(2));
 
 end

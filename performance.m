@@ -1,6 +1,6 @@
 % algorithms to performance test
-algos = {@RX_global, @rxl, @dwest, @nswtd, @mwnswtd, @pcag, @pcag, @knn};
-algos_nice = {'Global RX', 'Local RX', 'DWEST', 'NSWTD', 'MW-NSWTD', 'PCAG', 'MW-PCAG', 'KNN'};
+algos = {@RX_global, @rxl, @dwest, @nswtd, @mwnswtd, @pcag, @mwpcag, @pcad, @knna};
+algos_nice = {'Global RX', 'Local RX', 'DWEST', 'NSWTD', 'MW-NSWTD', 'PCAG', 'MW-PCAG', 'PCAD', 'KNN'};
 
 % scenes to compare
 scene_files = {'beach.jpg', 'desert.jpg', 'island.jpg'};
@@ -29,7 +29,7 @@ end
 
 % bar plot
 b = bar(tbl);
-ylabel('Time (s)');
+ylabel('Average time (s)');
 xlabel('Algorithm');
 set(gca, 'XTickLabel', algos_nice);
 title('Execution Time');

@@ -1,6 +1,6 @@
 % algorithms to compare
-algos = {'rx', 'rxl', 'dwest', 'nswtd', 'mwnswtd', 'pcag', 'mwpcag', 'knna'};
-algos_nice = {'Global RX', 'Local RX', 'DWEST', 'NSWTD', 'MW-NSWTD', 'PCAG', 'MW-PCAG', 'KNN'};
+algos = {'rx', 'rxl', 'dwest', 'nswtd', 'mwnswtd', 'pcag', 'mwpcag', 'pcad', 'knna'};
+algos_nice = {'Global RX', 'Local RX', 'DWEST', 'NSWTD', 'MW-NSWTD', 'PCAG', 'MW-PCAG', 'PCAD', 'KNN'};
 
 % scenes to compare
 scene_files = dir('scenes/*.jpg');
@@ -62,7 +62,7 @@ end
 
 % bar plot
 b = bar(tbl);
-ylim([0.65 1.0]);
+ylim([0.6 1.0]);
 ylabel('AUC');
 xlabel('Color space');
 legend(b, algos, 'Location', 'EastOutside');
