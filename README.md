@@ -1,5 +1,5 @@
-Color Anomaly Detection
-=======================
+Color Anomaly Detector
+======================
 
 Written as part of a class project on color anomaly detection for search and rescue purposes, this repository contains a number of Matlab implementations of common anomaly detection algorithm from literature on hyperspectral techniques, as well as our own algorithm (PCAG) selected to balance performance and computation time.
 
@@ -44,6 +44,7 @@ Analysis scripts
 * `run` evaluates the above algorithms over a number of scenes and color spaces in parallel (using `run_script`)
 * `analyze` evaluates the output of the run function above across algorithms and colorspaces
 * `analyze_environ` evaluates the output of the run function above across scene types (assuming consistently prefixed scene names)
+* `performance` evaluates the execution time of the various algorithms
 
 ### Authors
 
