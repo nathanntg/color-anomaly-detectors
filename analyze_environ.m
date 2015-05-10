@@ -53,7 +53,7 @@ for i = 1:length(scene_files)
 		end
 		
 		% calculate AUC
-		[~, ~, ~, auc] = roc_anomally(target, out);
+		[~, ~, ~, auc] = roc_anomaly(target, out);
         title(sprintf('%s for %s scenes', algos_nice{j}, scene_nice{i}));
 		print(gcf, sprintf('roc/%s-%s.png', scene_nice{i}, algo), '-dpng', '-r300');
         

@@ -48,7 +48,7 @@ for i = 1:length(color_spaces)
 		end
 		
 		% calculate AUC
-		[~, ~, ~, auc] = roc_anomally(target, out);
+		[~, ~, ~, auc] = roc_anomaly(target, out);
         title(sprintf('%s with %s color space', algos_nice{j}, color_spaces{i}));
 		print(gcf, sprintf('roc/%d-%s.png', i, algo), '-dpng', '-r300');
         

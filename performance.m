@@ -1,5 +1,5 @@
 % algorithms to performance test
-algos = {@RX_global, @rxl, @dwest, @nswtd, @mwnswtd, @pcag, @mwpcag, @pcad, @knna};
+algos = {@rxg, @rxl, @dwest, @nswtd, @mwnswtd, @pcag, @mwpcag, @pcad, @knna};
 algos_nice = {'Global RX', 'Local RX', 'DWEST', 'NSWTD', 'MW-NSWTD', 'PCAG', 'MW-PCAG', 'PCAD', 'KNN'};
 
 % scenes to compare

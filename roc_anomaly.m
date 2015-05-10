@@ -1,6 +1,6 @@
-function [tpr, fpr, th, auc] = roc_anomally(im_target, im_out)
-%ROC_ANOMALLY Plot receiver operating characteristic and return values.
-%   Takes a target image and the output of an anomally detector.
+function [tpr, fpr, th, auc] = roc_anomaly(im_target, im_out)
+%ROC_ANOMALY Plot receiver operating characteristic and return values.
+%   Takes a target image and the output of an anomaly detector.
 %   Shows a plot of the ROC curve.
 
 % remove color component

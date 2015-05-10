@@ -51,7 +51,7 @@ for j = 1:length(color_spaces)
     % RX GLOBAL
     fname = sprintf('output/%s-%d-rx.mat', scene_file, j);
     if ~exist(fname, 'file')
-        img_rx = RX_global(img);
+        img_rx = rxg(img);
         save(fname, 'img_rx');
     end
     

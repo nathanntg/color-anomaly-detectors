@@ -1,7 +1,7 @@
 function px = pcag_block(block_struct)
 %PCAG Perform the PCAG algorithm on img.
 
-% size of anomally
+% size of anomaly
 min_size = 4;
 max_size = min(100, floor(0.5 * prod(block_struct.blockSize)));
 
