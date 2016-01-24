@@ -5,7 +5,7 @@ Written as part of a class project on color anomaly detection for search and res
 
 The full technical report on the project, including citations and evaluations of the different anomaly detection algorithms is available online at:
 
-[Color Outlier Detection for Search and Rescue](http://www.nathanntg.com/writing/color-anomaly-detection.pdf)
+[Color Outlier Detection for Search and Rescue](https://www.nathanntg.com/writing/color-anomaly-detection.pdf)
 
 
 Implemented hyperspectral algorithms
@@ -51,6 +51,6 @@ Analysis scripts
 **L. Nathan Perkins**
 
 - <https://github.com/nathanntg>
-- <http://www.nathanntg.com>
+- <https://www.nathanntg.com>
 
 **Travis Marshall**
